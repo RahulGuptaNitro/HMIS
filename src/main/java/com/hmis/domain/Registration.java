@@ -3,6 +3,7 @@ package com.hmis.domain;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import jakarta.annotation.Generated;
@@ -15,6 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Document
 public class Registration {
+	
+	@Transient
+	public static final String  id="hid_seq";
 	
 	private int hid;
     private String fname;
