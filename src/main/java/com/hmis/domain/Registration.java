@@ -20,6 +20,7 @@ public class Registration {
 	@Transient
 	public static final String  id="hid_seq";
 	
+	
 	private int hid;
     private String fname;
     private String mname;
@@ -29,24 +30,23 @@ public class Registration {
     private String marital_status;
     private String father_name;
     private String mother_name;
-    private int phone;
+    private long phone;
     private String email;
     private String address;
     private String city;
-    private String state;
     private int pincode;
+    private String state;
     private String country;
     private String caste;
     private String department;
     private String unit;
-    private String insured;
+    private boolean insured;
     private String reg_mode;
-    private String isvalid;
+    private boolean isvalid;
     private int update_id;
     private String create_time;
-    private String ipaddress;
-    private String macaddress;
-    
+    private String ip;
+    private String mac;
     
 	    
 }
