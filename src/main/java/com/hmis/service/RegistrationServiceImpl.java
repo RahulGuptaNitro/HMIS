@@ -16,6 +16,9 @@ public class RegistrationServiceImpl implements RegistrationService{
 	@Autowired
 	RegistrationRepo repo;
 	
+	@Autowired
+	NextSeqService seq;
+	
 	@Override
 	public List<Registration> getAllPatient() {
 		
@@ -31,6 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 	@Override
 	public void savePatient(Registration reg) {
 		
+		reg.setHid(seq.getNextSequence(Registration.id));
 		repo.save(reg);
 	}
 
