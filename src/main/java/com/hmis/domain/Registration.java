@@ -40,9 +40,9 @@ public class Registration {
     private String caste;
     private String department;
     private String unit;
-    private boolean insured;
+    private String insured;
     private String reg_mode;
-    private boolean isvalid;
+    private boolean isvalid=true;
     private int update_id;
     private String create_time;
     private String ip;

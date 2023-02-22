@@ -28,6 +28,13 @@ public class RegistrationCnt {
 	}
 	
 	
+	@GetMapping("/getPatientCount")
+	public Integer getPatientCount() {
+		List<Registration> pats=regserv.getAllPatient();
+		return (int) pats.stream().filter(pat->pat.isIsvalid()==true).count();
+	}
+	
+	
 	@PostMapping("/savePatient")
 	public boolean savePatient(@RequestBody Registration pat) {
 		regserv.savePatient(pat);
