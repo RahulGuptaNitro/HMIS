@@ -10,7 +10,6 @@ public class IdSequence {
 
 	@Id
     private String id;
-
     private int seq;
 	
 }

@@ -17,23 +17,15 @@ public class NextSeqService {
 	@Autowired
 	MongoOperations mongoOperations;
 	
-	   public int getNextSequence(String seqName)
-	    {
-		   
-		   
-		   //mongoOperations.findAndModify(null, null, null)
-		   
-		   
-		   
-		   //Query query=new Query(null);
-		   
-		   
-		   
-		   IdSequence counter = mongoOperations.findAndModify(
-	            query(where("_id").is(seqName)),
-	            new Update().inc("seq",1),
-	            options().returnNew(true).upsert(true),
-	            IdSequence.class);
-	        return counter.getSeq();
-	    }
+    public int getNextSequence(String seqName)
+    {
+	   
+	   IdSequence counter = mongoOperations.findAndModify(
+            query(where("_id").is(seqName)),
+            new Update().inc("seq",1),
+            options().returnNew(true).upsert(true),
+            IdSequence.class);
+        return counter.getSeq();
+    }
+	   
 }
