@@ -22,11 +22,12 @@ public class RegistrationServiceImpl implements RegistrationService{
 	@Override
 	public List<Registration> getAllPatient() {
 		
-		return repo.findAll();
+		List<Registration> list = repo.findAll().stream().filter(x -> x.isIsvalid()).toList();
+		return list;
 	}
 
 	@Override
-	public Registration getPatientById(int id) {
+	public Registration getPatientByHid(int hid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,21 +35,26 @@ public class RegistrationServiceImpl implements RegistrationService{
 	@Override
 	public void savePatient(Registration reg) {
 		
-		reg.setHid(seq.getNextSequence(Registration.id));
+		reg.setHid(seq.getNextSequence(Registration.idgen));
 		repo.save(reg);
 	}
 
 	@Override
 	public boolean updatePatient(Registration reg) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println(reg);
+		repo.delete(repo.findByHid(reg.getHid()));
+		repo.save(reg);
+		return true;
 	}
 
 	@Override
 	public boolean deletePatient(Registration reg) {
 		// TODO Auto-generated method stub
-		return false;
+		repo.delete(repo.findByHid(reg.getHid()));
+		reg.setIsvalid(false);
+		repo.save(reg);
+		return true;
 	}
-	
 	
 }

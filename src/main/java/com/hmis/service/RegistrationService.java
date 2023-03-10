@@ -8,7 +8,7 @@ public interface RegistrationService {
 	
 	public List<Registration> getAllPatient();
 	
-	public Registration getPatientById(int id);
+	public Registration getPatientByHid(int hid);
 	
 	public void savePatient(Registration reg);
 	

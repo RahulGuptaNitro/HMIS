@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.hmis.dao.RegistrationRepo;
 import com.hmis.domain.Registration;
 import com.hmis.service.RegistrationService;
 
@@ -28,10 +28,28 @@ public class RegistrationCnt {
 	}
 	
 	
+	@GetMapping("/getPatientCount")
+	public Integer getPatientCount() {
+		List<Registration> pats=regserv.getAllPatient();
+		return (int) pats.stream().filter(pat->pat.isIsvalid()==true).count();
+	}
+	
+	
 	@PostMapping("/savePatient")
 	public boolean savePatient(@RequestBody Registration pat) {
 		regserv.savePatient(pat);
 		return true;
 	}
+	
+	@PutMapping("/updatePatient")
+	public boolean updatePatient(@RequestBody Registration pat) {
+		return regserv.updatePatient(pat);
+	}
+	
+	@DeleteMapping("/deletePatient")
+	public boolean deletePatient(@RequestBody Registration pat) {
+		return regserv.deletePatient(pat);
+	}
+
 
 }
