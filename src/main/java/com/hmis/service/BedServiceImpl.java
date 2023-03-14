@@ -6,57 +6,59 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hmis.dao.WardRepo;
+import com.hmis.dao.BedRepo;
+import com.hmis.domain.Bed;
 import com.hmis.domain.Unit;
 import com.hmis.domain.Ward;
 
 
 @Service
-public class WardServiceImpl implements WardService {
+public class BedServiceImpl implements BedService {
 	
 	@Autowired
-	WardRepo repo;
+	BedRepo repo;
 	
 	@Autowired
 	NextSeqService seq;
 
-	
+
 	@Override
-	public List<Ward> getAllWard() {
+	public List<Bed> getAllBed() {
 		// TODO Auto-generated method stub
-		
+
 		return repo.findAll();
 	}
 
 	@Override
-	public Ward getWardById(int id) {
+	public Bed getBedById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveWard(Ward ward) {
+	public void saveBed(Bed bed) {
 		// TODO Auto-generated method stub
-		
-		ward.setWardid(seq.getNextSequence(Ward.id));
-		repo.save(ward);
-		
-	}
-	
-	@Override
-	public List<Ward> getWardByUnitId(int id) {
-		List<Ward> r=repo.findAll();
-		return r.stream().filter(unit->unit.getUnitid()==id).collect(Collectors.toList());
+		for (int i=1;i<=bed.getBedcount();i++) {
+			bed.setBedid(Integer.parseInt(bed.getDeptid()+""+bed.getUnitid()+""+bed.getWardid()+""+i));
+			bed.setBedname("Bed-"+i);
+			repo.save(bed);
+		}
 	}
 
 	@Override
-	public boolean updateWard(Ward ward) {
+	public List<Bed> getBedByWardId(int id) {
+		List<Bed> r=repo.findAll();
+		return r.stream().filter(bed->bed.getWardid()==id && bed.getVacant()==1).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean updateBed(Bed bed) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deleteWard(Ward ward) {
+	public boolean deleteBed(Bed bed) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -10,39 +10,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hmis.domain.Bed;
 import com.hmis.domain.Department;
-import com.hmis.domain.Unit;
 import com.hmis.domain.Ward;
-import com.hmis.service.WardService;
+import com.hmis.service.BedService;
 
 @RestController
 @CrossOrigin("*")
-public class WardCnt {
+public class BedCnt {
 	
 	
 	@Autowired
-	WardService serv;
+	BedService serv;
 
 	
-	@GetMapping("/getAllWard")
-	public List<Ward> getAllWard() {
-		return serv.getAllWard();
+	@GetMapping("/getAllBed")
+	public List<Bed> getAllBed() {
+		return serv.getAllBed();
 	}
 	
-	@GetMapping("/getWardById/{id}")
-	public Department getDepartmentById(@PathVariable int id) {
+	@GetMapping("/getBedById/{id}")
+	public Department getBedById(@PathVariable int id) {
 		return null;
 	}
 	
-	@GetMapping("/getWardByUnitId/{id}")
-	public List<Ward> getWardByUnitId(@PathVariable int id) {
-		return serv.getWardByUnitId(id);
+	
+	@PostMapping("/saveBed")
+	public boolean saveBed(@RequestBody Bed bed) {
+		serv.saveBed(bed);
+		return true;
 	}
 	
-	@PostMapping("/saveWard")
-	public boolean saveWard(@RequestBody Ward ward) {
-		serv.saveWard(ward);
-		return true;
+	@GetMapping("/getBedByWardId/{id}")
+	public List<Bed> getBedByWardId(@PathVariable int id) {
+		return serv.getBedByWardId(id);
 	}
 
 }

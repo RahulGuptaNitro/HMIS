@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hmis.dao.RegistrationRepo;
+import com.hmis.domain.PatStatus;
 import com.hmis.domain.Registration;
 
 

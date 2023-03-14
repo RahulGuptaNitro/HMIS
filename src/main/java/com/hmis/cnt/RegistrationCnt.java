@@ -29,6 +29,7 @@ public class RegistrationCnt {
 		return pats.stream().filter(pat->pat.isIsvalid()==true).collect(Collectors.toList());
 	}
 	
+	
 	@GetMapping("/getPatientById/{id}")
 	public Registration getPatientById(@PathVariable int id) {
 		return regserv.getPatientById(id);

@@ -15,5 +15,7 @@ public interface WardService {
 	public boolean updateWard(Ward ward);
 	
 	public boolean deleteWard(Ward ward);
+	
+	public List<Ward> getWardByUnitId(int id);
 
 }

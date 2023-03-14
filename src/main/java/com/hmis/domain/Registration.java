@@ -41,6 +41,7 @@ public class Registration {
     private String insured;
     private String reg_mode;
     private boolean isvalid=true;
+    private PatStatus patStatus=PatStatus.OPD;
     private int update_id;
     private String create_time;
     private String ip;

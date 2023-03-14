@@ -10,38 +10,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hmis.domain.Admission;
+import com.hmis.domain.Bed;
 import com.hmis.domain.Department;
-import com.hmis.domain.Unit;
-import com.hmis.domain.Ward;
-import com.hmis.service.WardService;
+import com.hmis.service.AdmissionService;
 
 @RestController
 @CrossOrigin("*")
-public class WardCnt {
+public class AdmissionCnt {
 	
 	
 	@Autowired
-	WardService serv;
+	AdmissionService serv;
 
 	
-	@GetMapping("/getAllWard")
-	public List<Ward> getAllWard() {
-		return serv.getAllWard();
+	@GetMapping("/getAllAdmissions")
+	public List<Admission> getAllAdmission() {
+		return serv.getAllAdmission();
 	}
 	
-	@GetMapping("/getWardById/{id}")
-	public Department getDepartmentById(@PathVariable int id) {
+	@GetMapping("/getAdmissionById/{id}")
+	public Department getAdmissionById(@PathVariable int id) {
 		return null;
 	}
 	
-	@GetMapping("/getWardByUnitId/{id}")
-	public List<Ward> getWardByUnitId(@PathVariable int id) {
-		return serv.getWardByUnitId(id);
-	}
-	
-	@PostMapping("/saveWard")
-	public boolean saveWard(@RequestBody Ward ward) {
-		serv.saveWard(ward);
+	@PostMapping("/saveAdmission")
+	public boolean saveAdmission(@RequestBody Admission adm) {
+		serv.saveAdmission(adm);
 		return true;
 	}
 
